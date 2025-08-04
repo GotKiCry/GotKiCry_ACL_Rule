@@ -320,6 +320,7 @@ proxy-groups:
       - 微软服务
       - 苹果服务
       - 游戏平台
+      - Steam下载
       - 网易音乐
       - 全球直连
       - 广告拦截
@@ -551,6 +552,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  JMComic:
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/refs/heads/master/Rule/JMComic.list
+    path: ./ruleset/JMComic.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
 
 rules:
   - "RULE-SET,LocalAreaNetwork,全球直连"
@@ -580,6 +588,7 @@ rules:
   - "RULE-SET,Bilibili,哔哩哔哩"
   - "RULE-SET,ChinaMedia,国内媒体"
   - "RULE-SET,ProxyMedia,国外媒体"
+  - "RULE-SET,JMComic,香港节点"
   - "RULE-SET,ProxyGFWlist,节点选择"
   - "RULE-SET,ChinaDomain,全球直连"
   - "RULE-SET,ChinaCompanyIp,全球直连"
