@@ -231,12 +231,14 @@ proxy-groups:
     proxies:
       - REJECT
       - DIRECT
+      - 节点选择
   - name: 应用净化
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hijacking.png
     type: select
     proxies:
       - REJECT
       - DIRECT
+      - 节点选择
   - name: 漏网之鱼
     icon: https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png
     type: select
