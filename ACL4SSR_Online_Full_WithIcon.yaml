@@ -561,6 +561,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  ExpRule:
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/refs/heads/master/Rule/ExpRule.list
+    path: ./ruleset/ExpRule.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
 
 rules:
   - "RULE-SET,LocalAreaNetwork,全球直连"
@@ -592,6 +599,7 @@ rules:
   - "RULE-SET,ProxyMedia,国外媒体"
   - "RULE-SET,JMComic,香港节点"
   - "RULE-SET,ProxyGFWlist,节点选择"
+  - "RULE-SET,ExpRule,节点选择"
   - "RULE-SET,ChinaDomain,全球直连"
   - "RULE-SET,ChinaCompanyIp,全球直连"
   - "RULE-SET,Download,全球直连"
