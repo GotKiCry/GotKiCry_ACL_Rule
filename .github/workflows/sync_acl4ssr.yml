@@ -1,0 +1,68 @@
+name: Sync ACL4SSR Rules
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Run daily at 2:00 UTC
+  workflow_dispatch:
+
+jobs:
+  sync-and-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+
+      - name: Checkout upstream repository
+        uses: actions/checkout@v4
+        with:
+          repository: ACL4SSR/ACL4SSR
+          path: upstream
+          ref: master
+
+      - name: Sync Clash directory
+        run: |
+          # Create Clash directory if it doesn't exist
+          mkdir -p Clash
+          
+          # Copy contents from upstream/Clash to local Clash directory
+          # Using rsync to handle recursive copy and updates
+          # --delete ensures local Clash folder mirrors upstream (removes stale files)
+          # We exclude hidden files just in case
+          rsync -av --delete --exclude=".*" upstream/Clash/ Clash/
+          
+          # Remove the upstream clone
+          rm -rf upstream
+
+      - name: Update URLs in YAML
+        run: |
+          FILE="ACL4SSR_Online_Full_WithIcon.yaml"
+          REPO_NAME="${{ github.repository }}"
+          BRANCH="master" # Assuming master branch, change if main
+          
+          # Base URL for this repository
+          NEW_BASE_URL="https://raw.githubusercontent.com/${REPO_NAME}/${BRANCH}/Clash/"
+          
+          # Replace jsdelivr CDN links
+          sed -i "s|https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/|${NEW_BASE_URL}|g" "$FILE"
+          
+          # Replace standard GitHub raw links (if any)
+          sed -i "s|https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/|${NEW_BASE_URL}|g" "$FILE"
+          
+          echo "Updated links in $FILE"
+
+      - name: Commit and Push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add Clash/ "$FILE"
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: sync rules from ACL4SSR and update links [skip ci]"
+            git push
+          fi
