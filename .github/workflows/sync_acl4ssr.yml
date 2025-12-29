@@ -16,27 +16,52 @@ jobs:
     steps:
       - name: Checkout current repository
         uses: actions/checkout@v4
-
-      - name: Checkout upstream repository
-        uses: actions/checkout@v4
         with:
-          repository: ACL4SSR/ACL4SSR
-          path: upstream
-          ref: master
+          fetch-depth: 0  # Full history for proper merge
 
-      - name: Sync Clash directory
+      - name: Sync Clash directory with merge
         run: |
-          # Create Clash directory if it doesn't exist
+          # Configure merge driver for list files (union keeps both sides' additions)
+          echo "*.list merge=union" >> .gitattributes
+          echo "*.txt merge=union" >> .gitattributes
+          
+          # Add upstream as remote
+          git remote add upstream https://github.com/ACL4SSR/ACL4SSR.git || true
+          git fetch upstream master
+          
+          # Create a temporary branch from upstream
+          git checkout -b upstream-temp upstream/master
+          
+          # Switch back to master
+          git checkout master
+          
+          # Use git checkout to get upstream Clash files, then merge manually
+          # First, get list of files in upstream Clash/
+          git diff --name-only master upstream-temp -- Clash/ > /tmp/upstream_clash_files.txt || true
+          
+          # For each file in upstream Clash/, merge with local version
           mkdir -p Clash
           
-          # Copy contents from upstream/Clash to local Clash directory
-          # Using rsync to handle recursive copy and updates
-          # --delete ensures local Clash folder mirrors upstream (removes stale files)
-          # We exclude hidden files just in case
-          rsync -av --delete --exclude=".*" upstream/Clash/ Clash/
+          # Copy new files from upstream that don't exist locally
+          git diff --name-only --diff-filter=A master upstream-temp -- Clash/ | while read file; do
+            git show upstream-temp:"$file" > "$file" 2>/dev/null || true
+          done
           
-          # Remove the upstream clone
-          rm -rf upstream
+          # For existing files, use git merge-file to merge changes
+          git diff --name-only --diff-filter=M master upstream-temp -- Clash/ | while read file; do
+            if [ -f "$file" ]; then
+              # Get base, ours, theirs versions
+              git show upstream-temp:"$file" > /tmp/theirs.tmp 2>/dev/null || continue
+              cp "$file" /tmp/ours.tmp
+              # Merge: ours + theirs, keeping both additions (union-like)
+              git merge-file -p --union /tmp/ours.tmp /tmp/ours.tmp /tmp/theirs.tmp > "$file" 2>/dev/null || cp /tmp/theirs.tmp "$file"
+            fi
+          done
+          
+          # Clean up
+          git branch -D upstream-temp 2>/dev/null || true
+          git remote remove upstream 2>/dev/null || true
+          rm -f .gitattributes
 
       - name: Update URLs in YAML
         run: |
