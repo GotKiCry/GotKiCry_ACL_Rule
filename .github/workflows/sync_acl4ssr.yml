@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      FILE_NAME: "ACL4SSR_Online_Full_WithIcon.yaml"
 
     steps:
       - name: Checkout current repository
@@ -38,7 +40,6 @@ jobs:
 
       - name: Update URLs in YAML
         run: |
-          FILE="ACL4SSR_Online_Full_WithIcon.yaml"
           REPO_NAME="${{ github.repository }}"
           BRANCH="master" # Assuming master branch, change if main
           
@@ -46,19 +47,19 @@ jobs:
           NEW_BASE_URL="https://raw.githubusercontent.com/${REPO_NAME}/${BRANCH}/Clash/"
           
           # Replace jsdelivr CDN links
-          sed -i "s|https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/|${NEW_BASE_URL}|g" "$FILE"
+          sed -i "s|https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/|${NEW_BASE_URL}|g" "$FILE_NAME"
           
           # Replace standard GitHub raw links (if any)
-          sed -i "s|https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/|${NEW_BASE_URL}|g" "$FILE"
+          sed -i "s|https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/|${NEW_BASE_URL}|g" "$FILE_NAME"
           
-          echo "Updated links in $FILE"
+          echo "Updated links in $FILE_NAME"
 
       - name: Commit and Push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          git add Clash/ "ACL4SSR_Online_Full_WithIcon.yaml"
+          git add Clash/ "$FILE_NAME"
           
           if git diff --staged --quiet; then
             echo "No changes to commit."
