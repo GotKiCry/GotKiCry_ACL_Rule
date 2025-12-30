@@ -344,6 +344,20 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  CNDNS:
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Rule/CNDNS.list
+    path: ./ruleset/CNDNS.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  ProxyDNS:
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Rule/ProxyDNS.list
+    path: ./ruleset/ProxyDNS.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
   UnBan:
     url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Clash/UnBan.list
     path: ./ruleset/UnBan.list
@@ -571,6 +585,8 @@ rule-providers:
 
 rules:
   - "RULE-SET,LocalAreaNetwork,全球直连"
+  - "RULE-SET,CNDNS,全球直连"
+  - "RULE-SET,ProxyDNS,节点选择"
   - "RULE-SET,UnBan,全球直连"
   - "RULE-SET,BanAD,广告拦截"
   - "RULE-SET,BanProgramAD,应用净化"
