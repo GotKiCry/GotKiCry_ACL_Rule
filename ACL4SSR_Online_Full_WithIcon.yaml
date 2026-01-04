@@ -562,22 +562,29 @@ rule-providers:
     format: text
     type: http
   SteamDownload:
-    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/refs/heads/master/Rule/SteamDownload.list
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Rule/SteamDownload.list
     path: ./ruleset/SteamDownload.list
     behavior: classical
     interval: 86400
     format: text
     type: http
   JMComic:
-    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/refs/heads/master/Rule/JMComic.list
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Rule/JMComic.list
     path: ./ruleset/JMComic.list
     behavior: classical
     interval: 86400
     format: text
     type: http
   ExpRule:
-    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/refs/heads/master/Rule/ExpRule.list
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Rule/ExpRule.list
     path: ./ruleset/ExpRule.list
+    behavior: classical
+    interval: 86400
+    format: text
+    type: http
+  ExpDirect:
+    url: https://raw.githubusercontent.com/GotKiCry/GotKiCry_ACL_Rule/master/Rule/ExpDirect.list
+    path: ./ruleset/ExpDirect.list
     behavior: classical
     interval: 86400
     format: text
@@ -615,9 +622,10 @@ rules:
   - "RULE-SET,ProxyMedia,国外媒体"
   - "RULE-SET,JMComic,香港节点"
   - "RULE-SET,ProxyGFWlist,节点选择"
-  - "RULE-SET,ExpRule,节点选择"
   - "RULE-SET,ChinaDomain,全球直连"
   - "RULE-SET,ChinaCompanyIp,全球直连"
   - "RULE-SET,Download,全球直连"
+  - "RULE-SET,ExpRule,节点选择"
+  - "RULE-SET,ExpDirect,全球直连"
   - "GEOIP,CN,全球直连"
   - "MATCH,漏网之鱼"
