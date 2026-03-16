@@ -591,7 +591,6 @@ rule-providers:
     type: http
 
 rules:
-  - GEOSITE,geolocation-!cn,节点选择
   - "RULE-SET,LocalAreaNetwork,全球直连"
   - "RULE-SET,CNDNS,全球直连"
   - "RULE-SET,ProxyDNS,节点选择"
