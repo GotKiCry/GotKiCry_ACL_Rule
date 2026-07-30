@@ -2,7 +2,6 @@
 # 数量：40条
 # 直连以下域名和IP段，使Steam下载不走代理，确保国内CDN解析
 # ⚠️ 以下域名必须直连！Steam用来检测出口IP决定CDN区域
-DOMAIN,api.steampowered.com
 DOMAIN-SUFFIX,steamconnecttest.com
 DOMAIN-SUFFIX,steamcontent.com
 DOMAIN-SUFFIX,steamusercontent.com
