@@ -1,2 +1,36 @@
-DOMAIN-SUFFIX,steamusercontent.com
+# 内容：Steam下载/CDN域名 - 直连以确保国内CDN满速下载
+# 数量：38条
+# 直连以下域名和IP段，使Steam下载不走代理，确保国内CDN解析
 DOMAIN-SUFFIX,steamcontent.com
+DOMAIN-SUFFIX,steamusercontent.com
+DOMAIN-SUFFIX,steamserver.net
+DOMAIN-SUFFIX,steamstatic.com
+DOMAIN-SUFFIX,steamvideo.com
+DOMAIN,steambroadcast.akamaized.net
+DOMAIN,steamcommunity-a.akamaihd.net
+DOMAIN,steampipe.akamaized.net
+DOMAIN,steamstore-a.akamaihd.net
+DOMAIN,steamusercontent-a.akamaihd.net
+DOMAIN,steamuserimages-a.akamaihd.net
+DOMAIN,steamvideo-a.akamaihd.net
+# Valve AS32590 IP段 - 直连避免绕路
+IP-CIDR,45.121.184.0/24
+IP-CIDR,103.10.124.0/23
+IP-CIDR,103.28.54.0/24
+IP-CIDR,146.66.152.0/24
+IP-CIDR,146.66.155.0/24
+IP-CIDR,155.133.224.0/22
+IP-CIDR,155.133.228.0/23
+IP-CIDR,155.133.230.0/24
+IP-CIDR,155.133.236.0/22
+IP-CIDR,155.133.244.0/24
+IP-CIDR,155.133.246.0/24
+IP-CIDR,155.133.248.0/22
+IP-CIDR,155.133.252.0/24
+IP-CIDR,155.133.254.0/23
+IP-CIDR,162.254.192.0/21
+IP-CIDR,185.25.182.0/23
+IP-CIDR,192.69.96.0/22
+IP-CIDR,205.196.6.0/24
+IP-CIDR,208.64.200.0/22
+IP-CIDR,208.78.164.0/22
