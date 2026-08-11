@@ -1,22 +1,12 @@
-# 内容：Steam下载/CDN域名+CDN区域检测 - 直连以确保国内CDN满速下载
-# 数量：41条
-# 直连以下域名和IP段，使Steam下载不走代理，确保国内CDN解析
-# ⚠️ 以下域名必须直连！Steam用来检测出口IP决定CDN区域
+# 内容：Steam游戏下载/CDN - 直连以确保国内CDN满速下载
+# 数量：31条
+# 只含游戏下载相关域名+Valve下载服务器IP段，静态/媒体/社区资源已移出(见Steam.list)
+# ⚠️ CDN区域检测必须直连！Steam用来检测出口IP决定CDN区域
 DOMAIN-SUFFIX,steamconnecttest.com
 DOMAIN-SUFFIX,steamcontent.com
-DOMAIN-SUFFIX,steamusercontent.com
 DOMAIN-SUFFIX,steamserver.net
-DOMAIN-SUFFIX,steamstatic.com
-DOMAIN-SUFFIX,steamvideo.com
-DOMAIN,steamcdn-a.akamaihd.net
-DOMAIN,steambroadcast.akamaized.net
-DOMAIN,steamcommunity-a.akamaihd.net
 DOMAIN,steampipe.akamaized.net
-DOMAIN,steamstore-a.akamaihd.net
-DOMAIN,steamusercontent-a.akamaihd.net
-DOMAIN,steamuserimages-a.akamaihd.net
-DOMAIN,steamvideo-a.akamaihd.net
-# Valve AS32590 IP段 - 直连避免绕路
+# Valve AS32590 IP段 - 下载服务器直连避免绕路
 IP-CIDR,45.121.184.0/24
 IP-CIDR,103.10.124.0/23
 IP-CIDR,103.28.54.0/24
