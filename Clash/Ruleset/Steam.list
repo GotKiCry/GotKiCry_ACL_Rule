@@ -1,18 +1,11 @@
 # 内容：Steam
-# 数量：22条
-# 静态/媒体/社区资源(原SteamDownload移出): 走游戏平台代理
-# 注: steamserver.net/steampipe.akamaized.net 双写自ACL4SSR同步, SteamDownload直连规则在前先命中, 功能无害
-DOMAIN-SUFFIX,steamstatic.com
-DOMAIN-SUFFIX,steamusercontent.com
-DOMAIN-SUFFIX,steamvideo.com
-DOMAIN,steamcdn-a.akamaihd.net
+# 数量：18条
 DOMAIN,steambroadcast.akamaized.net
 DOMAIN,steamcommunity-a.akamaihd.net
 DOMAIN,steampipe.akamaized.net
 DOMAIN,steamstore-a.akamaihd.net
 DOMAIN,steamusercontent-a.akamaihd.net
 DOMAIN,steamuserimages-a.akamaihd.net
-DOMAIN,steamvideo-a.akamaihd.net
 DOMAIN-SUFFIX,fanatical.com
 DOMAIN-SUFFIX,humblebundle.com
 DOMAIN-SUFFIX,playartifact.com
@@ -22,5 +15,6 @@ DOMAIN-SUFFIX,steamgames.com
 DOMAIN-SUFFIX,steampowered.com
 DOMAIN-SUFFIX,steamserver.net
 DOMAIN-SUFFIX,steamstat.us
+DOMAIN-SUFFIX,steamstatic.com
 DOMAIN-SUFFIX,underlords.com
 DOMAIN-SUFFIX,valvesoftware.com
