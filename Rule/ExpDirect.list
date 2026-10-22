@@ -1,0 +1,11 @@
+# Piik P2P / STUN 直连：仅 stun.miwifi.com 与 stun.chat.bilibili.com
+# Cloudflare STUN 不在此列，继续按原规则走代理
+DOMAIN,stun.miwifi.com
+DOMAIN,stun.chat.bilibili.com
+# real-ip 模式下 UDP 没有域名，上面两条不命中，用这两个 STUN 的实测 IP 段兜底
+IP-CIDR,111.206.174.0/24,no-resolve
+IP-CIDR,106.12.251.0/24,no-resolve
+IP-CIDR,106.12.71.0/24,no-resolve
+IP-CIDR,106.13.248.0/24,no-resolve
+IP-CIDR,106.13.249.0/24,no-resolve
+IP-CIDR,180.76.162.0/24,no-resolve
